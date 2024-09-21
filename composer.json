@@ -1,0 +1,18 @@
+{
+    "name": "zem_er_1001/php-bit-array",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BitArray\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "friendsofphp/php-cs-fixer": "^3.4"
+    }
+}

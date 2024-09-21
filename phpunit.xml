@@ -1,0 +1,11 @@
+<phpunit
+  bootstrap="vendor/autoload.php"
+>
+  <testsuite name="Bit Array Tests">
+    <directory>tests/</directory>
+  </testsuite>
+
+  <php>
+    <ini name="memory_limit" value="-1" />
+  </php>
+</phpunit>
