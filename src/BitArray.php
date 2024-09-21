@@ -3,8 +3,9 @@
 namespace BitArray;
 
 use ArrayAccess;
+use Countable;
 
-interface BitArray extends ArrayAccess
+interface BitArray extends ArrayAccess, Countable
 {
     public const BITS_IN_BYTE = 8;
 
