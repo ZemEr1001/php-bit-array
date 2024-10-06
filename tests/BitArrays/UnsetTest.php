@@ -2,13 +2,16 @@
 
 namespace Tests\BitArrays;
 
+use BitArray\BitArrays\OffsetContainableBitArray;
 use BitArray\BitArrays\StringStoredBitArray;
 use PHPUnit\Framework\TestCase;
+use Tests\Support\ImplementationsForTest\TestBitArray;
 
 class UnsetTest extends TestCase
 {
     /**
      * @dataProvider stringStoredProvider
+     * @dataProvider offsetContainableProvider
      */
     public function test_set_false($sut, $index)
     {
@@ -19,6 +22,7 @@ class UnsetTest extends TestCase
 
     /**
      * @dataProvider stringStoredProvider
+     * @dataProvider offsetContainableProvider
      */
     public function test_unset($sut, $index)
     {
@@ -62,6 +66,40 @@ class UnsetTest extends TestCase
             'StringStoredBitArray; set first bit when length equal 1' => [
                 new StringStoredBitArray(1),
                 0
+            ],
+        ];
+    }
+
+
+    public function offsetContainableProvider()
+    {
+        $sut = new OffsetContainableBitArray($offset = 1000, new TestBitArray($length = 1000));
+
+        $firstPosition = $offset;
+        $middlePosition = (int) ($offset + ceil($length / 2) - 1);
+        $lastPosition = $offset + $length - 1;
+
+        $sut[$firstPosition] = true;
+        $sut[$middlePosition] = true;
+        $sut[$lastPosition] = true;
+
+        return [
+            'OffsetContainableBitArray; unset bit which position before first bit' => [
+                $sut,
+                $offset - 2,
+                false
+            ],
+            'OffsetContainableBitArray; unset first bit' => [
+                $sut,
+                $firstPosition
+            ],
+            'OffsetContainableBitArray; unset middle bit' => [
+                $sut,
+                $middlePosition
+            ],
+            'OffsetContainableBitArray; unset last bit' => [
+                $sut,
+                $lastPosition
             ],
         ];
     }

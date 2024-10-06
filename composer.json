@@ -8,7 +8,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Tests\\Support\\": "tests/_support/"
         }
     },
     "require-dev": {
